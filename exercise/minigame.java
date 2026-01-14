@@ -2,6 +2,7 @@ class Player{
     String name;
     double health;
     Weapon weapon;
+    Shield shield;
 
     Player(String name, double health){
         this.name = name;
@@ -11,12 +12,17 @@ class Player{
     void info(){
         System.out.println("\n----- Player Info -----");
         System.out.println("Player name: " + this.name);
-        System.out.println("Player health: " + this.health);
         System.out.println("Player Weapon: " + this.weapon.name);
+        System.out.println("Player shield: " + this.shield.name);
+        System.out.println("Player total health: " + (this.shield.defense + this.health));
     }
 
     void equipWeapon(Weapon weapon){
         this.weapon = weapon;
+    }
+
+    void equipShield(Shield shield){
+        this.shield = shield;
     }
 }
 
@@ -56,6 +62,7 @@ public class minigame {
 
         // player action
         player1.equipWeapon(knife);
+        player1.equipShield(iron);
 
         // player info
         player1.info();
