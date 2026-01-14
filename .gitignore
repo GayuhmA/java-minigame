@@ -1,0 +1,8 @@
+# Abaikan folder bin
+bin/
+
+# Abaikan semua file hasil compile (.class)
+*.class
+
+# Abaikan settingan folder VS Code (opsional)
+.vscode/
