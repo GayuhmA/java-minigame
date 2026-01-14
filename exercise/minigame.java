@@ -24,6 +24,27 @@ class Player{
     void equipShield(Shield shield){
         this.shield = shield;
     }
+
+    void attack(Player opponent){
+        double damage = this.weapon.damage;
+
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        opponent.health = opponent.health - damage;
+
+        double currentTotalHealth = opponent.health;
+        
+        if (opponent.shield != null) {
+            currentTotalHealth += opponent.shield.defense;
+        }
+
+        System.out.println("\n----- ATTACKING!! -----");
+        System.out.println(this.name + " attacking " + opponent.name);
+        System.out.println("Damage dealt: " + damage);
+        System.out.println(opponent.name + " remaining health: " + currentTotalHealth);
+    }
 }
 
 class Weapon{
@@ -63,9 +84,15 @@ public class minigame {
         // player action
         player1.equipWeapon(knife);
         player1.equipShield(iron);
+        player2.equipWeapon(sword);
+        player2.equipShield(rock);
 
         // player info
         player1.info();
+        player2.info();
+
+        // attacking
+        player1.attack(player2);
 
     }
 }
