@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Player{
     String name;
     double health;
@@ -69,30 +71,60 @@ class Shield{
 
 public class minigame {
     public static void main(String[] args) {
-        // player setup
-        Player player1 = new Player("Robert", 100);
-        Player player2 = new Player("Ginko", 100);
+        Scanner scanner = new Scanner(System.in);
 
         // weapon setup
-        Weapon knife = new Weapon("Knife", 5);
-        Weapon sword = new Weapon("Sword", 10);
+        Weapon knife = new Weapon("Knife", 25);
+        Weapon sword = new Weapon("Sword", 50);
 
         // shield setup
-        Shield iron = new Shield("Iron", 20);
-        Shield rock = new Shield("Rock", 10);
+        Shield iron = new Shield("Iron", 30);
+        Shield rock = new Shield("Rock", 15);
 
-        // player action
-        player1.equipWeapon(knife);
-        player1.equipShield(iron);
-        player2.equipWeapon(sword);
+        // Human Player Setup
+        System.out.print("Masukkan nama Player: ");
+        String plName = scanner.nextLine();
+        
+        Player player1 = new Player(plName, 100);
+
+        // Weapon Selection
+        System.out.println("\nPilih Senjata:");
+        System.out.println("1. Knife (Damage: 25)");
+        System.out.println("2. Sword (Damage: 50)");
+        System.out.print("Pilihan (1/2): ");
+        int weaponChoice = scanner.nextInt();
+
+        if (weaponChoice == 1) {
+            player1.equipWeapon(knife);
+        } else {
+            player1.equipWeapon(sword);
+        }
+
+        // Shield Selection
+        System.out.println("\nPilih Shield:");
+        System.out.println("1. Iron (Defense: 30)");
+        System.out.println("2. Rock (Defense: 15)");
+        System.out.print("Pilihan (1/2): ");
+        int shieldChoice = scanner.nextInt();
+
+        if (shieldChoice == 1) {
+            player1.equipShield(iron);
+        } else {
+            player1.equipShield(rock);
+        }
+
+        // Opponent Setup (Auto)
+        Player player2 = new Player("Ginko", 100);
+        player2.equipWeapon(knife);
         player2.equipShield(rock);
 
         // player info
         player1.info();
         player2.info();
 
-        // attacking
+        // attacking example
         player1.attack(player2);
-
+        
+        scanner.close();
     }
 }
